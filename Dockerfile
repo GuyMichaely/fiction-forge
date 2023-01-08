@@ -1,9 +1,8 @@
 FROM node:14-alpine
-
-# Set up the working directory
 WORKDIR /usr/src/app
+COPY . .
+RUN npm install
+EXPOSE 3000
+EXPOSE 5000
 
-# Set up the volume mapping
-VOLUME /usr/src/app
-
-#CMD ["tail", "-f", "/dev/null"]
+CMD ["tail", "-f", "/dev/null"]

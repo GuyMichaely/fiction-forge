@@ -7,7 +7,9 @@ const App = () => (
         className="absolute top-4 right-4 h-12 w-24 px-4 py-2 font-semibold leading-5 text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
         type="button"
       >
-        Sign In
+        <a href="/signin">
+           Sign In
+         </a>
       </button>
     </div>
     <div>
