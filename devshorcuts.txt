@@ -1,0 +1,4 @@
+# build and run
+docker build -t fiction-forge . && docker run -dv $PWD:/usr/src/app -p 3000:3000 -p 5000:5000 fiction-forge
+
+# remove image and container
