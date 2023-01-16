@@ -1,5 +1,4 @@
 .*/*
 .*
 client/build/*
-postgresqlsetup.sh
 devshortcuts.txt
