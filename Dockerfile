@@ -8,5 +8,6 @@ RUN sh postgresqlsetup.sh
 
 EXPOSE 3000
 EXPOSE 5000
+EXPOSE 9229
 
 CMD ["tail", "-f", "/dev/null"]
