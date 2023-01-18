@@ -1,5 +1,8 @@
 # build and run
-docker build -t fiction-forge . && docker run -p 3000:3000 -p 5000:5000 -p 9229:9229 fiction-forge
+docker build -t fiction-forge . && docker run -v $PWD:/usr/src/app -dp 3000:3000 -p 5000:5000 -p 9229:9229 --name fiction-forge fiction-forge
 
 # remove image and container
-docker container rm -f $(docker container ls -a | grep fiction-forge | awk '{print $1}') && docker image rm fiction-forge
+docker container rm -f fiction-forge && docker image rm fiction-forge
+
+# remove image and container, rebuild image and container
+docker container rm -f fiction-forge && docker image rm fiction-forge && docker build -t fiction-forge . && docker run -v $PWD:/usr/src/app -dp 3000:3000 -p 5000:5000 -p 9229:9229 --name fiction-forge fiction-forge

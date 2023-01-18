@@ -1,13 +1,17 @@
 FROM node:14-alpine
 
 WORKDIR /usr/src/app
-COPY . .
-
-RUN apk add --no-cache postgresql sudo
-RUN sh postgresqlsetup.sh
+#COPY . .
+ENV PGDATA=/var/lib/postgresql/data
 
 EXPOSE 3000
 EXPOSE 5000
 EXPOSE 9229
 
-CMD ["tail", "-f", "/dev/null"]
+# postgresql setup
+RUN apk add --no-cache postgresql sudo
+COPY postgresqlsetup.sh .
+RUN ./postgresqlsetup.sh
+
+CMD su postgres -c "postgres -D $PGDATA"
+#CMD ["tail", "-f", "/dev/null"]

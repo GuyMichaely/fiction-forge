@@ -17,9 +17,9 @@
             "request": "attach",
             "platform": "node",
             "port": 9229,
-            "address": "localhost",
-            "localRoot": "${workspaceFolder}/server",
-            "remoteRoot": "/usr/src/app/server"
+            "address": "0.0.0.0",
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/usr/src/app"
         },
         {
             "name": "Docker Node.js Attach (Legacy)",
@@ -27,9 +27,9 @@
             "restart": true,
             "request": "attach",
             "port": 9229,
-            "address": "localhost",
-            "localRoot": "${workspaceFolder}/server",
-            "remoteRoot": "/usr/src/app/server",
+            "address": "127.0.0.1",
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/usr/src/app",
             "protocol": "inspector"
         }
     ]

@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --unhandled-rejections=strict server.js",
-    "dev": "nodemon --inspect --trace-warnings --unhandled-rejections=strict server.js"
+    "dev": "nodemon --inspect=0.0.0.0:9229 --trace-warnings --unhandled-rejections=strict server.js"
   },
   "keywords": [],
   "author": "",
