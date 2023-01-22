@@ -1,28 +1,28 @@
 import React, {useState} from 'react';
-import SearchBar from './SearchBar';
-import SignInPage from './SignInPage';
+import SearchBar from './mainpage/SearchBar';
+import SignInPage from './mainpage/SignInPage';
+import { UserContext } from './UserContext'
+import SignOutButton from './mainpage/SignOutButton'
+import SignInLink from './mainpage/SignInLink';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import ProtectedRoutes from './ProtectedRoutes';
 
 const App = () => {
-  const [signinDisplayed, setSigninDisplayed] = useState('');
-  const toggleSigninDisplayed = () => console.log(signinDisplayed)+setSigninDisplayed(!signinDisplayed);
+  const [user, setUser] = useState('users');
   return <Router>
     <div className="relative h32 w32 h-screen flex flex-col items-center justify-center">
       <div className="flex">
-        <Link 
-          to={'/' + (signinDisplayed ? '' : 'signin')}
-        >
-          <button
-            className="absolute top-4 left-4 h-12 w-80 px-4 py-2 font-semibold leading-5 text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-            type="button"
-            onClick={toggleSigninDisplayed}
-          >
-            Sign In/Register
-          </button>
-        </Link>
-        <Routes>
-          <Route path="/signin" element={<SignInPage />} />
-        </Routes>
+        <UserContext.Provider value={[user, setUser]}>
+          {/* <SignInLink/> */}
+          {user ? <SignOutButton /> : <SignInLink />}
+          <Routes>
+            <Route path="/signout" element={<SignOutButton />} />
+            <Route path="/signin" element={<SignInPage />} />
+            {/* <Route element={<ProtectedRoutes/>}>
+              
+            </Route> */}
+          </Routes>
+        </UserContext.Provider>
       </div>
       <div>
         <div className="text-5xl font-bold text-center my-8">Fiction Forge</div>

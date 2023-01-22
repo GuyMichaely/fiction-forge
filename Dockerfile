@@ -2,7 +2,6 @@ FROM node:14-alpine
 
 WORKDIR /usr/src/app
 #COPY . .
-ENV PGDATA=/var/lib/postgresql/data
 
 EXPOSE 3000
 EXPOSE 5000

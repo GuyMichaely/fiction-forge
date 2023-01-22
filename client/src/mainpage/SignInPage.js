@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
+import { UserContext } from '../UserContext';
 
 function postData(endpoint, data) {
   // debugger;
@@ -11,9 +12,11 @@ function postData(endpoint, data) {
   }).then(response => response.json()).then(console.log)
 }
 
-function SignInPage() {
+export default function SignInPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const [user, setUser] = useContext(UserContext);
 
   return (
     <form className="w-full mx-auto mt-8 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -47,18 +50,19 @@ function SignInPage() {
           onChange={e => setPassword(e.target.value)}
         />
       </div>
+      <p>Your current user is {user}</p>
       <div className="flex items-center justify-between">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
-          onClick={e => postData('signin', {email, password})}
+          onClick={() => {setUser('clickedsignin');postData('signin', {email, password})}}
         >
           Sign In
         </button>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
-          onClick={e => postData('register', {email, password})}
+          onClick={() => {setUser('clickedregister');postData('register', {email, password})}}
         >
           Register
         </button>
@@ -66,5 +70,3 @@ function SignInPage() {
     </form>
   );
 }
-
-export default SignInPage;
