@@ -1,12 +1,14 @@
-const express = require("express");
+import express from 'express';
 const app = express(); // create express app
-const path = require('path');
-const bodyParser = require("body-parser");
+import path from 'path';
+import bodyParser from 'body-parser';
 import session from 'express-session';
 import connectPg from 'connect-pg-simple';
 import pg from 'pg';
 
-const POOL = new pg.Pool()
+const POOL = new pg.Pool({
+  user: process.env.user
+})
 
 const pgSession = connectPg(session);
 app.use(session({

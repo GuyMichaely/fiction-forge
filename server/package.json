@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "proxy": "http://localhost:5000",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --unhandled-rejections=strict server.js",
-    "dev": "nodemon --inspect=0.0.0.0:9229 --trace-warnings --unhandled-rejections=strict server.js"
+    "start": "su postgres -c \"node --unhandled-rejections=strict server.js\"",
+    "dev": "su postgres -c \"nodemon --inspect=0.0.0.0:9229 --trace-warnings --unhandled-rejections=strict server.js\""
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
   "dependencies": {
     "connect-pg-simple": "^8.0.0",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "pg": "^8.8.0"
   },
   "devDependencies": {
