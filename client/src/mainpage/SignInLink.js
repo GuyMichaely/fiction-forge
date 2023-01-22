@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import SignInPage from './SignInPage';
 
 export default function SignInLink() {
     const [dest, setDest] = useState('/signin')

@@ -4,11 +4,17 @@ import SignInPage from './mainpage/SignInPage';
 import { UserContext } from './UserContext'
 import SignOutButton from './mainpage/SignOutButton'
 import SignInLink from './mainpage/SignInLink';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Cookies from 'js-cookie'
 import ProtectedRoutes from './ProtectedRoutes';
 
 const App = () => {
-  const [user, setUser] = useState('users');
+  const [user, setUser] = useState('');
+  fetch('/api/whoami').then(response => {
+    if (response.status === 200) {
+      response.text().then(setUser)
+    }
+  })
   return <Router>
     <div className="relative h32 w32 h-screen flex flex-col items-center justify-center">
       <div className="flex">
