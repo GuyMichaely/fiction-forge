@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 const SearchBar = () => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedOption, setSelectedOption] = useState('Discover');
-
+  
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };

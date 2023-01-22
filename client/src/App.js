@@ -1,12 +1,8 @@
 import React, {useState} from 'react';
-import SearchBar from './mainpage/SearchBar';
-import SignInPage from './mainpage/SignInPage';
 import { UserContext } from './UserContext'
-import SignOutButton from './mainpage/SignOutButton'
-import SignInLink from './mainpage/SignInLink';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Cookies from 'js-cookie'
-import ProtectedRoutes from './ProtectedRoutes';
+import HomePage from './homepage/HomePage';
+import DashBoard from './dashboard/DashBoard';
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -15,27 +11,16 @@ const App = () => {
       response.text().then(setUser)
     }
   })
-  return <Router>
-    <div className="relative h32 w32 h-screen flex flex-col items-center justify-center">
-      <div className="flex">
-        <UserContext.Provider value={[user, setUser]}>
-          {/* <SignInLink/> */}
-          {user ? <SignOutButton /> : <SignInLink />}
-          <Routes>
-            <Route path="/signout" element={<SignOutButton />} />
-            <Route path="/signin" element={<SignInPage />} />
-            {/* <Route element={<ProtectedRoutes/>}>
-              
-            </Route> */}
-          </Routes>
-        </UserContext.Provider>
-      </div>
-      <div>
-        <div className="text-5xl font-bold text-center my-8">Fiction Forge</div>
-        <SearchBar />
-      </div>
-    </div>
-  </Router>
+  return (
+    <Router>
+      <UserContext.Provider value={{user, setUser}}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<DashBoard />} />
+        </Routes>
+      </UserContext.Provider>
+    </Router>
+  )
 }
 
 export default App;
